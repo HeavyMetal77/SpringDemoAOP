@@ -12,6 +12,10 @@ public class MainDemoApp {
 
         accountDao.addAccount();
 
+        System.out.println("\n Let`s call it again....\n");
+
+        accountDao.addAccount();
+
         applicationContext.close();
     }
 }
