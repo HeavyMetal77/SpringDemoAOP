@@ -3,10 +3,11 @@ package ua.tarastom.aopdemo.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import ua.tarastom.aopdemo.Account;
 
 @Aspect
+@Order(1)
 @Component
 public class MyPointcutDeclarations {
 
@@ -16,11 +17,13 @@ public class MyPointcutDeclarations {
     @Before("forDaoPackage()")
     public void plusNewPoitcut() {
         System.out.println("=====>>>>> Executing @Before advice from Poitcut declarations....");
+        System.out.println("========== order 1");
     }
 
     @Before("forDaoPackage()")
     public void nnnPoitcut() {
         System.out.println("=====>>>>> Executing @Before advice from nnnPoitcut....");
+        System.out.println("========== order 1");
     }
 
     // create pointcut for getter methods
