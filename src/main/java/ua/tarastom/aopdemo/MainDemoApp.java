@@ -35,6 +35,11 @@ public class MainDemoApp {
         Account account1 = new Account();
         accountDao.addAccountWithMultyParam(account1, true);
 
+        System.out.println("\n Let`s call addAccountWithMultyParam....\n");
+        accountDao.plusPointcut(account, false);
+
+
+
         applicationContext.close();
     }
 }

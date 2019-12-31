@@ -16,4 +16,8 @@ public class AccountDAO {
     public void addAccountWithMultyParam(Account account, boolean flag) {
         System.out.println(getClass() + ": DOING MY DB WORK: ADDING IN ACCOUNT addAccountWithMultyParam");
     }
+
+    public void plusPointcut(Account account, boolean flag) {
+        System.out.println(getClass() + ": DOING MY DB WORK: ADDING IN ACCOUNT plusPointcut");
+    }
 }
