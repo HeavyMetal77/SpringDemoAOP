@@ -22,4 +22,17 @@ public class MyPointcutDeclarations {
     public void nnnPoitcut() {
         System.out.println("=====>>>>> Executing @Before advice from nnnPoitcut....");
     }
+
+    // create pointcut for getter methods
+    @Pointcut("execution(* ua.tarastom.aopdemo.dao.*.get*(..))")
+    private void getter() {}
+
+    // create pointcut for setter methods
+    @Pointcut("execution(* ua.tarastom.aopdemo.dao.*.set*(..))")
+    private void setter() {}
+
+    // create pointcut: include package ... exclude getter/setter
+    @Pointcut("forDaoPackage() && !(getter() || setter())")
+    private void forDaoPackageNoGetterSetter() {}
+
 }

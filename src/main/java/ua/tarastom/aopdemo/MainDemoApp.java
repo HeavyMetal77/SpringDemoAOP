@@ -38,7 +38,12 @@ public class MainDemoApp {
         System.out.println("\n Let`s call addAccountWithMultyParam....\n");
         accountDao.plusPointcut(account, false);
 
+        System.out.println("\n Let`s call getters and setters....\n");
 
+        accountDao.setName("test");
+        accountDao.getName();
+        accountDao.setServiceCod("silver");
+        accountDao.getServiceCod();
 
         applicationContext.close();
     }
