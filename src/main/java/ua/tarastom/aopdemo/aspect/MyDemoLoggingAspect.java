@@ -28,4 +28,23 @@ public class MyDemoLoggingAspect {
         System.out.println("=====>>>>> Executing @Before AnyAny advice....");
     }
 
+    @Before("execution(* add*(ua.tarastom.aopdemo.Account))")
+    public void beforeAddAccountAdviceWithParam() {
+        System.out.println("=====>>>>> Executing @Before advice addAccountWithParam....");
+    }
+
+    @Before("execution(* add*(ua.tarastom.aopdemo.Account, ..))")
+    public void beforeAddAccountAdviceWithMultyParam() {
+        System.out.println("=====>>>>> Executing @Before advice AddAccountAdviceWithMultyParam....");
+    }
+
+    @Before("execution(* add*(..))") //.. - от нуля до любое ко-во параметров
+    public void beforeAddAccountAdviceWithANYParam() {
+        System.out.println("=====>>>>> Executing @Before advice AddAccountAdviceWithANYParam....");
+    }
+
+    @Before("execution(* ua.tarastom.aopdemo.dao.*.*(..))") //*.* - любой клас и любой метод
+    public void beforeAddAccountAdviceAnyClassAnyMethod() {
+        System.out.println("=====>>>>> Executing @Before advice AddAccountAdviceAnyClassAnyMethod....");
+    }
 }

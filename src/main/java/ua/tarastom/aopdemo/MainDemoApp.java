@@ -27,6 +27,13 @@ public class MainDemoApp {
         System.out.println("\n Let`s call anyYoYo membership....\n");
         membershipDAO.anyYoYo();
 
+        System.out.println("\n Let`s call addAccountWithParam....\n");
+        Account account = new Account();
+        accountDao.addAccountWithParam(account);
+
+        System.out.println("\n Let`s call addAccountWithMultyParam....\n");
+        Account account1 = new Account();
+        accountDao.addAccountWithMultyParam(account1, true);
 
         applicationContext.close();
     }
