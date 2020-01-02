@@ -1,12 +1,15 @@
 package ua.tarastom.aopdemo.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import ua.tarastom.aopdemo.Account;
+
+import java.util.List;
 
 @Aspect
 @Order(2)
@@ -62,7 +65,7 @@ public class MyDemoLoggingAspect {
     }
 
     @Before("execution(* ua.tarastom.aopdemo.dao.*.*(..))") //*.* - любой клас и любой метод
-    public void beforeAddAccountJoinPoint(JoinPoint joinPoint) {
+    public void beforeAddAccountJoinPoint(JoinPoint joinPoint) {//AOP Read Method Arguments with JoinPoints
         System.out.println("=====>>>>> Executing @Before advice beforeAddAccountJoinPoint....");
         System.out.println("========== order 2");
 
@@ -73,5 +76,15 @@ public class MyDemoLoggingAspect {
         for (Object arg : args) {
             System.out.println("Parameters of method: " + arg);
         }
+    }
+
+    //@AfterReturning advice for findAccount method
+    @AfterReturning(pointcut="execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))", returning="result1")
+    public void AfterReturningForFindAccountsAdvice(JoinPoint joinPoint, List<Account> result1){
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
+
+        // print out the results of the method call
+        System.out.println("\n=====>>> result is: " + result1);
     }
 }

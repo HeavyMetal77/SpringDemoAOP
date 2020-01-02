@@ -3,6 +3,9 @@ package ua.tarastom.aopdemo.dao;
 import org.springframework.stereotype.Component;
 import ua.tarastom.aopdemo.Account;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccountDAO {
     private String name;
@@ -42,5 +45,16 @@ public class AccountDAO {
     public void setServiceCod(String serviceCod) {
         System.out.println(getClass() + ": in setServiceCod()");
         this.serviceCod = serviceCod;
+    }
+
+    public List<Account> findAccounts() {
+        ArrayList<Account> myAccounts = new ArrayList<Account>();
+        Account account1 = new Account("John", "Silver");
+        Account account2 = new Account("Madhu", "Platinum");
+        Account account3 = new Account("Luka", "Gold");
+        myAccounts.add(account1);
+        myAccounts.add(account2);
+        myAccounts.add(account3);
+        return myAccounts;
     }
 }
