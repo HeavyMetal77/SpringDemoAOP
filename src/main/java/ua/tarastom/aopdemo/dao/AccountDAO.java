@@ -57,4 +57,19 @@ public class AccountDAO {
         myAccounts.add(account3);
         return myAccounts;
     }
+
+    public List<Account> findAccounts(boolean flag) {
+        //симулируем исключение в перегруженном методе
+        if (flag) {
+            throw new RuntimeException("Oops.... throw exception in AccountDAO.findAccounts()");
+        }
+        ArrayList<Account> myAccounts = new ArrayList<Account>();
+        Account account1 = new Account("John", "Silver");
+        Account account2 = new Account("Madhu", "Platinum");
+        Account account3 = new Account("Luka", "Gold");
+        myAccounts.add(account1);
+        myAccounts.add(account2);
+        myAccounts.add(account3);
+        return myAccounts;
+    }
 }

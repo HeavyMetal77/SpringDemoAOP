@@ -2,6 +2,7 @@ package ua.tarastom.aopdemo.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -80,7 +81,7 @@ public class MyDemoLoggingAspect {
 
     //@AfterReturning advice for findAccount method
     @AfterReturning(pointcut = "execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))", returning = "result1")
-    public void AfterReturningForFindAccountsAdvice(JoinPoint joinPoint, List<Account> result1) {
+    public void afterReturningForFindAccountsAdvice(JoinPoint joinPoint, List<Account> result1) {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
 
@@ -98,5 +99,12 @@ public class MyDemoLoggingAspect {
             tempAccount.setName(theUpperName);
         }
         System.out.println("\n=====>>> result after converting is: " + result1);
+    }
+
+    @AfterThrowing(pointcut = "execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
+    public void afterThrowingForFindAccountsAdvice(JoinPoint joinPoint, Throwable theExc) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @AfterThrowing on method: " + method);
+        System.out.println("\n=====>>> The exception method is: " + method);
     }
 }
