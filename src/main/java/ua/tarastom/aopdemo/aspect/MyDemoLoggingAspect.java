@@ -79,12 +79,24 @@ public class MyDemoLoggingAspect {
     }
 
     //@AfterReturning advice for findAccount method
-    @AfterReturning(pointcut="execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))", returning="result1")
-    public void AfterReturningForFindAccountsAdvice(JoinPoint joinPoint, List<Account> result1){
+    @AfterReturning(pointcut = "execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))", returning = "result1")
+    public void AfterReturningForFindAccountsAdvice(JoinPoint joinPoint, List<Account> result1) {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("\n=====>>> Executing @AfterReturning on method: " + method);
 
         // print out the results of the method call
         System.out.println("\n=====>>> result is: " + result1);
+
+        // let's post-process the data ... let's modify it :-)
+
+        // convert the account names to uppercase
+        // loop through accounts
+        for (Account tempAccount : result1) {
+            // get uppercase version of name
+            String theUpperName = tempAccount.getName().toUpperCase();
+            // update the name on the account
+            tempAccount.setName(theUpperName);
+        }
+        System.out.println("\n=====>>> result after converting is: " + result1);
     }
 }
