@@ -102,7 +102,7 @@ public class MyDemoLoggingAspect {
     public void afterThrowingForFindAccountsAdvice(JoinPoint joinPoint, Throwable theExc) {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("\n=====>>> Executing @AfterThrowing on method: " + method);
-        System.out.println("\n=====>>> The exception method is: " + method);
+        System.out.println("\n=====>>> The exception is: " + theExc);
     }
 
     @After("execution(* ua.tarastom.aopdemo.dao.AccountDAO.findAccounts(..))")
@@ -111,3 +111,5 @@ public class MyDemoLoggingAspect {
         System.out.println("\n=====>>> Executing @After (finally) on method: " + method);
     }
 }
+
+
