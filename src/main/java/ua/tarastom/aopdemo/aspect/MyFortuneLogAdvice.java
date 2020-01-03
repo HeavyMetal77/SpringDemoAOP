@@ -6,16 +6,20 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Logger;
+
 @Aspect
 @Order(1)
 @Component
 public class MyFortuneLogAdvice {
+    private Logger myLogger = Logger.getLogger(getClass().getName());
+
 
     @Around("execution(* ua.tarastom.aopdemo.service.*.get*())")
     public Object aroundGetFortune(ProceedingJoinPoint pjp) throws Throwable {
         // print out method we are advising on
         String method = pjp.getSignature().toShortString();
-        System.out.println("\n=====>>> Executing @Around on method: " + method);
+        myLogger.info("\n=====>>> Executing @Around on method: " + method);
 
         // get begin timestamp
         long begin = System.currentTimeMillis();
@@ -28,7 +32,7 @@ public class MyFortuneLogAdvice {
 
         // compute duration and display it
         long duration = end - begin;
-        System.out.println("\n=====> Duration: " + duration / 1000.0 + " seconds");
+        myLogger.info("\n=====> Duration: " + duration / 1000.0 + " seconds");
 
         return result;
     }
