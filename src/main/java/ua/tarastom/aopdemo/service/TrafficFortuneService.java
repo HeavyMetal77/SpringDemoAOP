@@ -15,4 +15,11 @@ public class TrafficFortuneService {
         }
         return "Heavy traffic";
     }
+
+    public String getFortune(boolean flag) {
+        if (flag) {
+            throw new RuntimeException("Oops...getFortune()");
+        }
+        return getFortune();
+    }
 }

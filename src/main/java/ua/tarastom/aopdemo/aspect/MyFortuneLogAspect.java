@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 @Aspect
 @Order(1)
 @Component
-public class MyFortuneLogAdvice {
+public class MyFortuneLogAspect {
     private Logger myLogger = Logger.getLogger(getClass().getName());
 
 
-    @Around("execution(* ua.tarastom.aopdemo.service.*.get*())")
+    @Around("execution(* ua.tarastom.aopdemo.service.*.get*(..))")
     public Object aroundGetFortune(ProceedingJoinPoint pjp) throws Throwable {
         // print out method we are advising on
         String method = pjp.getSignature().toShortString();
@@ -25,7 +25,14 @@ public class MyFortuneLogAdvice {
         long begin = System.currentTimeMillis();
 
         // now, let's execute the method
-        Object result = pjp.proceed();
+        Object result = null;
+
+        try {
+            result = pjp.proceed();
+        } catch (Exception exc) {
+            myLogger.warning(exc.getMessage());
+            result = "Booom..... Mistake.....";
+        }
 
         // get end timestamp
         long end = System.currentTimeMillis();
